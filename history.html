@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>History</title>
+
+    <style>
+
+        body{
+            background:#0f172a;
+            color:white;
+            font-family:Arial;
+            padding:40px;
+        }
+
+        h1{
+            margin-bottom:30px;
+        }
+
+        .card{
+            background:#1e293b;
+            padding:20px;
+            border-radius:12px;
+            margin-bottom:20px;
+        }
+
+        .fake{
+            color:#ff4d4d;
+        }
+
+        .real{
+            color:#4dff88;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<h1>📜 Scan History</h1>
+
+{% if scans %}
+
+    {% for scan in scans %}
+
+    <div class="card">
+
+        <h2>
+            {{ scan.scan_type }}
+        </h2>
+
+        <p>
+            Result:
+            <strong class="{% if scan.result == 'Fake' %}fake{% else %}real{% endif %}">
+                {{ scan.result }}
+            </strong>
+        </p>
+
+        <p>
+            Confidence: {{ scan.confidence }}%
+        </p>
+
+        <p>
+            {{ scan.input_data }}
+        </p>
+
+        <p>
+            {{ scan.scanned_at }}
+        </p>
+
+    </div>
+
+    {% endfor %}
+
+{% else %}
+
+    <p>No history found.</p>
+
+{% endif %}
+
+</body>
+</html>

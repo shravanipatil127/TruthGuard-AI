@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %}Create Account – TruthGuard AI{% endblock %}
+{% block navbar %}{% endblock %}
+
+{% block content %}
+<div class="auth-wrapper">
+  <div class="auth-card">
+    <div class="auth-logo">
+      <div style="font-size:2.5rem;margin-bottom:8px">🛡</div>
+      <h1>TruthGuard AI</h1>
+      <p>Create your free account</p>
+    </div>
+
+    {% if errors %}
+    <div class="alert alert-error">
+      ✕
+      <ul style="list-style:none;margin:4px 0 0 0;padding:0">
+        {% for e in errors %}<li>{{ e }}</li>{% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+
+    <form method="POST" action="{{ url_for('register') }}" autocomplete="on">
+      <div class="form-group">
+        <label class="form-label" for="username">Username</label>
+        <input type="text" id="username" name="username"
+               class="form-input" placeholder="Choose a username"
+               value="{{ username or '' }}" required minlength="3"
+               pattern="[a-zA-Z0-9_]+" autocomplete="username">
+        <div style="font-size:.78rem;color:var(--text-dim);margin-top:4px">
+          Letters, numbers, underscores only
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="email">Email Address</label>
+        <input type="email" id="email" name="email"
+               class="form-input" placeholder="your@email.com"
+               value="{{ email or '' }}" required autocomplete="email">
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="password">Password</label>
+        <input type="password" id="password" name="password"
+               class="form-input" placeholder="Min. 6 characters"
+               required minlength="6" autocomplete="new-password">
+        <div class="password-strength" style="margin-top:6px">
+          <div class="password-strength-bar" style="width:0%;transition:width .3s,background .3s"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="confirm_password">Confirm Password</label>
+        <input type="password" id="confirm_password" name="confirm_password"
+               class="form-input" placeholder="Repeat your password"
+               required autocomplete="new-password">
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:8px">
+        🚀 Create Account
+      </button>
+    </form>
+
+    <div class="auth-divider">or</div>
+
+    <p style="text-align:center;font-size:.88rem;color:var(--text-secondary)">
+      Already have an account?
+      <a href="{{ url_for('login') }}" style="color:var(--neon-cyan);text-decoration:none;font-weight:600">
+        Sign in →
+      </a>
+    </p>
+  </div>
+</div>
+{% endblock %}

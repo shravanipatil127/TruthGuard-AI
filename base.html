@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}TruthGuard AI{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡</text></svg>">
+  {% block head %}{% endblock %}
+</head>
+<body>
+
+{% block navbar %}
+{% if session.get('user_id') %}
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="{{ url_for('dashboard') }}" class="navbar-brand">
+      <div class="brand-icon">🛡</div>
+      <span class="brand-name">TruthGuard AI</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="{{ url_for('dashboard') }}" class="{{ 'active' if request.endpoint == 'dashboard' }}">📊 Dashboard</a></li>
+      <li><a href="{{ url_for('detect_text') }}" class="{{ 'active' if request.endpoint == 'detect_text' }}">📰 News Check</a></li>
+      <li><a href="{{ url_for('detect_image') }}" class="{{ 'active' if request.endpoint == 'detect_image' }}">🖼 Image Check</a></li>
+      <li><a href="{{ url_for('history') }}" class="{{ 'active' if request.endpoint == 'history' }}">📋 History</a></li>
+      <li>
+        <span class="user-badge">👤 {{ session.get('username', 'User') }}</span>
+      </li>
+      <li><a href="{{ url_for('logout') }}" class="btn-logout">⏻ Logout</a></li>
+    </ul>
+  </div>
+</nav>
+{% endif %}
+{% endblock %}
+
+<div id="flash-container" style="max-width:1200px;margin:0 auto;padding:12px 24px 0;position:relative;z-index:10">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+      <div class="alert alert-{{ category }}" data-auto-dismiss>
+        {{ '✓' if category == 'success' else ('✕' if category == 'error' else 'ℹ') }}
+        {{ message }}
+      </div>
+    {% endfor %}
+  {% endwith %}
+</div>
+
+{% block content %}{% endblock %}
+
+<footer class="footer">
+  🛡 TruthGuard AI &nbsp;|&nbsp; Built with Flask + ML &nbsp;|&nbsp; 
+  <span style="color:var(--neon-cyan)">Fighting Misinformation</span>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

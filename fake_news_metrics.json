@@ -1,0 +1,1 @@
+{"accuracy": 85.0, "samples": 100, "fake_samples": 50, "real_samples": 50, "confusion_matrix": [[10, 0], [3, 7]]}

@@ -1,0 +1,1 @@
+{"type": "opencv_heuristic", "accuracy": 78.0, "classes": ["Real Photo", "AI-Generated", "Manipulated"], "framework": "OpenCV"}

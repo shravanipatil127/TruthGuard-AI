@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+{% block title %}TruthGuard AI – Fake News & AI Image Detection{% endblock %}
+
+{% block navbar %}
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="{{ url_for('index') }}" class="navbar-brand">
+      <div class="brand-icon">🛡</div>
+      <span class="brand-name">TruthGuard AI</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="{{ url_for('login') }}" class="btn btn-secondary btn-sm">Sign In</a></li>
+      <li><a href="{{ url_for('register') }}" class="btn btn-primary btn-sm">Get Started</a></li>
+    </ul>
+  </div>
+</nav>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge">
+      <span class="dot"></span>
+      AI-Powered Detection System
+    </div>
+    <h1>
+      Guard Your Reality with<br>
+      <span class="gradient-text">TruthGuard AI</span>
+    </h1>
+    <p>
+      Detect fake news and AI-generated images instantly using advanced machine learning.
+      Don't believe everything you see or read.
+    </p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;animation:fadeInUp .7s ease .3s both">
+      <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg">🚀 Start Detecting Free</a>
+      <a href="{{ url_for('login') }}" class="btn btn-secondary btn-lg">Sign In</a>
+    </div>
+
+    <!-- Stats row -->
+    <div style="display:flex;gap:32px;justify-content:center;margin-top:48px;flex-wrap:wrap;animation:fadeInUp .7s ease .4s both">
+      <div style="text-align:center">
+        <div style="font-family:var(--font-display);font-size:2rem;font-weight:700;color:var(--neon-cyan)">~93%</div>
+        <div style="font-size:.8rem;color:var(--text-secondary);text-transform:uppercase;letter-spacing:.08em">Text Accuracy</div>
+      </div>
+      <div style="width:1px;background:var(--border-dim)"></div>
+      <div style="text-align:center">
+        <div style="font-family:var(--font-display);font-size:2rem;font-weight:700;color:var(--neon-purple)">3</div>
+        <div style="font-size:.8rem;color:var(--text-secondary);text-transform:uppercase;letter-spacing:.08em">Image Classes</div>
+      </div>
+      <div style="width:1px;background:var(--border-dim)"></div>
+      <div style="text-align:center">
+        <div style="font-family:var(--font-display);font-size:2rem;font-weight:700;color:var(--neon-green)">100%</div>
+        <div style="font-size:.8rem;color:var(--text-secondary);text-transform:uppercase;letter-spacing:.08em">Free & Local</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section style="padding-bottom:60px">
+    <h2 style="font-family:var(--font-display);font-size:1.4rem;text-align:center;margin-bottom:32px;color:var(--text-secondary);letter-spacing:.06em">
+      WHAT CAN IT DO?
+    </h2>
+    <div class="features-grid">
+
+      <div class="feature-card">
+        <span class="feature-icon">📰</span>
+        <h3>Fake News Detection</h3>
+        <p>Paste any headline or article. Our NLP model analyzes linguistic patterns, suspicious keywords, and writing style to detect misinformation with high confidence.</p>
+        <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap">
+          <span class="badge badge-fake">Fake</span>
+          <span class="badge badge-real">Real</span>
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">🖼</span>
+        <h3>AI Image Detection</h3>
+        <p>Upload any image. Our CNN model detects whether it's a real photograph, AI-generated (DALL-E, Midjourney, Stable Diffusion), or digitally manipulated.</p>
+        <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap">
+          <span class="badge badge-real">Real Photo</span>
+          <span class="badge badge-ai">AI-Generated</span>
+          <span class="badge badge-manipulated">Manipulated</span>
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">📊</span>
+        <h3>Analytics Dashboard</h3>
+        <p>View your detection history with beautiful charts, pie graphs, and daily activity. Track your scan patterns and export PDF reports.</p>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">📄</span>
+        <h3>PDF Reports</h3>
+        <p>Download professional PDF reports for any detection result. Perfect for research, journalism, or sharing findings with others.</p>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">🔒</span>
+        <h3>Secure & Private</h3>
+        <p>All processing happens locally on your machine. Your data is stored in a local SQLite database. No data sent to external servers.</p>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">⚡</span>
+        <h3>Fast & Lightweight</h3>
+        <p>Built with Flask and optimized ML models. Get results in under a second. Works on any modern computer without GPU.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section style="padding-bottom:80px">
+    <h2 style="font-family:var(--font-display);font-size:1.4rem;text-align:center;margin-bottom:40px;color:var(--text-secondary);letter-spacing:.06em">
+      HOW IT WORKS
+    </h2>
+    <div class="grid-3" style="gap:16px">
+      <div style="text-align:center;padding:24px">
+        <div style="width:56px;height:56px;background:linear-gradient(135deg,var(--neon-cyan),var(--neon-purple));border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:1.3rem;font-weight:900;margin:0 auto 16px;box-shadow:var(--glow-cyan)">1</div>
+        <h3 style="font-family:var(--font-display);font-size:.95rem;color:var(--neon-cyan);margin-bottom:8px">INPUT</h3>
+        <p style="font-size:.88rem;color:var(--text-secondary)">Enter a news headline, paste an article, or upload an image file</p>
+      </div>
+      <div style="text-align:center;padding:24px">
+        <div style="width:56px;height:56px;background:linear-gradient(135deg,var(--neon-purple),var(--neon-cyan));border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:1.3rem;font-weight:900;margin:0 auto 16px;box-shadow:var(--glow-purple)">2</div>
+        <h3 style="font-family:var(--font-display);font-size:.95rem;color:var(--neon-purple);margin-bottom:8px">ANALYZE</h3>
+        <p style="font-size:.88rem;color:var(--text-secondary)">AI models process your content using NLP and computer vision techniques</p>
+      </div>
+      <div style="text-align:center;padding:24px">
+        <div style="width:56px;height:56px;background:linear-gradient(135deg,var(--neon-green),var(--neon-cyan));border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:1.3rem;font-weight:900;margin:0 auto 16px;box-shadow:var(--glow-green)">3</div>
+        <h3 style="font-family:var(--font-display);font-size:.95rem;color:var(--neon-green);margin-bottom:8px">RESULT</h3>
+        <p style="font-size:.88rem;color:var(--text-secondary)">Get instant results with confidence scores, word highlights, and PDF reports</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="text-align:center;padding-bottom:80px">
+    <div style="background:var(--bg-card);border:1px solid var(--border-dim);border-radius:var(--radius-lg);padding:48px 32px;max-width:600px;margin:0 auto;position:relative;overflow:hidden">
+      <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--neon-cyan),var(--neon-purple))"></div>
+      <h2 style="font-family:var(--font-display);font-size:1.5rem;margin-bottom:12px">Ready to Fight Misinformation?</h2>
+      <p style="color:var(--text-secondary);margin-bottom:28px">Create your free account and start detecting in seconds.</p>
+      <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg animate-glow">
+        🛡 Create Free Account
+      </a>
+    </div>
+  </section>
+
+</div>
+{% endblock %}

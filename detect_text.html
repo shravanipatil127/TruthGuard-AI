@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fake News Detection</title>
+
+    <style>
+
+        body{
+            background:#0f172a;
+            color:white;
+            font-family:Arial;
+            padding:40px;
+        }
+
+        textarea{
+            width:100%;
+            height:200px;
+            padding:15px;
+            border-radius:10px;
+            border:none;
+            font-size:16px;
+            resize:none;
+        }
+
+        button{
+            background:#06b6d4;
+            color:white;
+            border:none;
+            padding:12px 25px;
+            border-radius:8px;
+            margin-top:20px;
+            cursor:pointer;
+            font-size:16px;
+        }
+
+        button:hover{
+            background:#0891b2;
+        }
+
+        .result{
+            margin-top:30px;
+            background:#1e293b;
+            padding:20px;
+            border-radius:10px;
+        }
+
+        .fake{
+            color:#ff4d4d;
+        }
+
+        .real{
+            color:#4dff88;
+        }
+
+        .history-btn{
+            display:inline-block;
+            margin-top:20px;
+            margin-left:10px;
+            text-decoration:none;
+            color:white;
+            background:#334155;
+            padding:12px 20px;
+            border-radius:8px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<h1>🛡 Fake News Detection</h1>
+
+<form method="POST">
+
+    <textarea
+        name="news"
+        placeholder="Paste news here..."
+    >{{ news }}</textarea>
+
+    <br>
+
+    <button type="submit">
+        Analyze News
+    </button>
+
+    <a href="/history" class="history-btn">
+        View History
+    </a>
+
+</form>
+
+{% if result %}
+
+<div class="result">
+
+    <h2>
+        Prediction:
+        <span class="{% if result.result == 'Fake' %}fake{% else %}real{% endif %}">
+            {{ result.result }}
+        </span>
+    </h2>
+
+    <h3>Confidence: {{ result.confidence }}%</h3>
+
+    <p>Real Probability: {{ result.real_prob }}%</p>
+
+    <p>Fake Probability: {{ result.fake_prob }}%</p>
+
+    {% if result.suspicious_found %}
+
+    <h3>Suspicious Words:</h3>
+
+    <ul>
+
+        {% for word in result.suspicious_found %}
+
+        <li>{{ word }}</li>
+
+        {% endfor %}
+
+    </ul>
+
+    {% endif %}
+
+    <h3>Highlighted Text:</h3>
+
+    <p>{{ result.highlighted_text|safe }}</p>
+
+</div>
+
+{% endif %}
+
+</body>
+</html>
